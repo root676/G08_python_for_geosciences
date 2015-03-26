@@ -4,4 +4,4 @@ This repository contains all sourcecode produced during the class 120.050 'Pytho
 
 Folder Structure:
 
-Homework 1: This folder contains all Scripts for the Commandline Roulette
+homework1: This folder contains all Scripts for the Commandline Roulette

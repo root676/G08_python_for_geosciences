@@ -13,14 +13,24 @@
 
 class Player:
     """ Player class - player can play on the roulette table and win or lose money"""
+
     def __init__(self,playername,money_set):
         self.name=playername
         self.money=money_set
         self.bet={}
 
-    def stop_playing(self):
-        if self.money==0:
-            print("Excuse me, you have no money left to bet.")
-        else:
-            print('You are leaving the Roulette table with {} ?.',self.money)
-        exit()
+    # save the bets for the specific user
+    def bets(self,playersbet):  #TODO: noch ?berlegungsfehler drinnen (zweimal auf dieselbe Zahl wetten/setzen?)
+        self.bet.append(playersbet)
+
+    # add money to players money
+    def wins(self,money):
+        print('You have won {} ?',money)
+        self.money += money
+
+    #  take money from players money
+    def loses(self,money):
+        print('You have lost {} ?',money)
+        self.money -= money
+
+

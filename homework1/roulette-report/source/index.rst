@@ -6,6 +6,12 @@
 Welcome to Roulette's documentation!
 ====================================
 
+.. note::
+
+   Achtung: reStructuredText ist *fast* wie markdown, aber es 
+   gibt dann und wann kleine unterschiede (zb bei Tabellen), dafür kann es
+   aber auch mehr
+
 Install guide für sphinx:
 
 .. code-block:: bash

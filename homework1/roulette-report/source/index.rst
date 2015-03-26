@@ -6,18 +6,32 @@
 Welcome to Roulette's documentation!
 ====================================
 
+Install guide für sphinx:
+
+.. code-block:: bash
+
+    pip install sphinx
+    pip install rst2pdf
+
+Dokumentation Builden (linx):
+
+.. code-block:: bash
+
+    cd roulette-report/
+
+    pip install sphinx
+    pip install rst2pdf
+
+
+
+** reStructuredText Primer **
+http://sphinx-doc.org/rest.html
+
 Header level 2
 --------------
 
 header level 3
 ^^^^^^^^^^^^^^
 
-** reStructuredText Primer ** 
-http://sphinx-doc.org/rest.html
 
-..code-block:: python
-  
-    x = 1
-    if x == 1:
-	# indented four spaces
-	print "x is 1."
+

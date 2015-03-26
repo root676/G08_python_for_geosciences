@@ -29,7 +29,7 @@ sollte unter windows aber sehr ähnlich gehen (make.bat verwenden)
     ...
    
 
-** reStructuredText Primer **
+**reStructuredText Primer**
 http://sphinx-doc.org/rest.html
 
 Header level 2

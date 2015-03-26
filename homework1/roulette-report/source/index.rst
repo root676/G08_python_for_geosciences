@@ -13,16 +13,21 @@ Install guide für sphinx:
     pip install sphinx
     pip install rst2pdf
 
-Dokumentation Builden (linx):
+Dokumentation Builden (liunx):
+
+Sind die oberen beiden Pakete installiert, kann man die dokumentation
+in verschiedene Formate builden. Ich hab jetzt nur erfahrungen unter linux,
+sollte unter windows aber sehr ähnlich gehen (make.bat verwenden)
 
 .. code-block:: bash
 
     cd roulette-report/
 
-    pip install sphinx
-    pip install rst2pdf
-
-
+    make pdf 
+    make html 
+    make epub
+    ...
+   
 
 ** reStructuredText Primer **
 http://sphinx-doc.org/rest.html

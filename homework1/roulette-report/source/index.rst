@@ -9,8 +9,10 @@ Welcome to Roulette's documentation!
 .. note::
 
    Achtung: reStructuredText ist *fast* wie markdown, aber es 
-   gibt dann und wann kleine unterschiede (zb bei Tabellen), dafür kann es
-   aber auch mehr
+   gibt dann und wann kleine Unterschiede (zb bei Tabellen), dafür kann es
+   aber auch mehr. Github interpretiert das geschriebene als markdown,
+   dadurch sieht der text hier etwas anders aus als in dem fertigen report
+   (z.b. diese "note" box hier)
 
 Install guide für sphinx:
 

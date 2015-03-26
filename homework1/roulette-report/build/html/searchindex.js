@@ -1,0 +1,1 @@
+Search.setIndex({envversion:46,filenames:["index"],objects:{},objnames:{},objtypes:{},terms:{block:0,code:0,doc:0,four:0,html:0,http:0,indent:0,org:0,primer:0,print:0,python:0,rest:0,restructuredtext:0,space:0,sphinx:0},titles:["Welcome to Roulette&#8217;s documentation!"],titleterms:{document:0,header:0,level:0,roulett:0,welcom:0}})

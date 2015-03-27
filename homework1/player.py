@@ -20,17 +20,44 @@ class Player:
         self.bet={}
 
     # save the bets for the specific user
-    def bets(self,playersbet):  #TODO: noch ?berlegungsfehler drinnen (zweimal auf dieselbe Zahl wetten/setzen?)
-        self.bet.append(playersbet)
+    def bets(self,mainoption,option,money):
+        bet_mainoptions = self.bet.get(mainoption)
+        # if main-option does not exists, create it otherwise...
+        if bet_mainoptions == None:
+            self.bet[mainoption] = {option:money}
+        else:
+            # check if options (for specific main options) exists - if yes update otherwise create
+            currentmoney = bet_mainoptions.get(option)
+            if currentmoney == None:
+                bet_mainoptions[option] = money
+                self.bet[mainoption] = bet_mainoptions
+            else:
+                self.bet[mainoption] = {option:currentmoney+money}
+
+    # give back all main bet options which are set
+    def getbetoptions(self):
+        return self.bet.keys()
+
+    # gives the money for the betted option
+    def getbettedmoney(self,mainoption,option):
+        return self.bet[mainoption].get(option)
 
     # add money to players money
     def wins(self,money):
-        print('You have won {} ?',money)
+        print('You have won {} Euro',money)
         self.money += money
 
     #  take money from players money
     def loses(self,money):
-        print('You have lost {} ?',money)
+        if money > self.money:
+            return False
         self.money -= money
+        return True
 
+    # give back the money status
+    def getmoneystatus(self):
+        return self.money
+
+    def cleanupbets(self):
+        self.bet = {}
 

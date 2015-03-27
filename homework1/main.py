@@ -1,6 +1,6 @@
 #-------------------------------------------------------------------------------
 # Name:        main
-# Purpose:
+# Purpose:     starts a roulette game with the user
 #
 # Author:      Dan
 #
@@ -13,4 +13,4 @@
 from roulettetable import RouletteTable
 from player import Player
 
-RouletteTable().starting_playing
+RouletteTable().starting_playing()

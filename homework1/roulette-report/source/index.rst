@@ -40,6 +40,9 @@ sollte unter windows aber sehr ähnlich gehen (make.bat verwenden)
 **reStructuredText Primer**
 http://sphinx-doc.org/rest.html
 
+**Documenting python in Sphinx** 
+http://sphinx-doc.org/domains.html#domains
+
 Header level 2
 --------------
 

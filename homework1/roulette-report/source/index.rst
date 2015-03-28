@@ -6,6 +6,58 @@
 Welcome to Roulette's documentation!
 ====================================
 
+Classes and methods
+===================
+
+.. py:class:: Player(playername, money_set)
+
+A player can play at the roulette table and win or lose money
+
+    .. py:method:: bet(mainoption,option,money)
+
+    .. py:method:: getbetoptions()
+
+    .. py:method:: getbettedmoney(mainoption,option)
+
+    .. py:method:: bet(mainoption,option,money)
+
+    .. py:method:: wins(money)
+
+    .. py:method:: loses(money)
+
+    .. py:method:: getmoneystatus()
+
+    .. py:method:: cleanupbets():
+
+
+.. py:class::  RouletteTable()
+
+    .. py:method:: starting_playing()
+
+    .. py:method:: betting_phase()
+
+    .. py:method:: rotate_roulette()
+
+    .. py:method:: getcolor()
+
+    .. py:method:: checkeven()
+
+    .. py:method:: addmoney2table(money)
+
+    .. py:method:: takemoneyfromtable(money)
+
+    .. py:method:: winning_quote(option)::
+
+    .. py:method:: payout_phase::
+
+    .. py:method:: nextround()::
+
+    .. py:method:: stop_playing()::
+
+
+Sphinx info (remove later)
+==========================
+
 .. note::
 
    Achtung: reStructuredText ist *fast* wie markdown, aber es 
@@ -48,6 +100,3 @@ Header level 2
 
 header level 3
 ^^^^^^^^^^^^^^
-
-
-

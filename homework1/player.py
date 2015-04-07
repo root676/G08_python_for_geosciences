@@ -11,9 +11,13 @@
 #-------------------------------------------------------------------------------
 #!/usr/bin/env python
 
-class Player:
-    """ Player class - player can play on the roulette table and win or lose money"""
+# purpose of player.py
+# player.py contains code for the construction of a player-class 
+# a player can play on the roulette table and win or lose money
 
+class Player:
+    
+    # definition of player properties (name, money he brings, bets he sets on the table)
     def __init__(self,playername,money_set):
         self.name=playername
         self.money=money_set
@@ -58,7 +62,8 @@ class Player:
     # give back the money status
     def getmoneystatus(self):
         return self.money
-
+    
+    # erase all bets for a new game 
     def cleanupbets(self):
         self.bet = {}
 

@@ -24,7 +24,8 @@ the source code. No source code in this document. This can also be a simple READ
 
 ## French Terminal Roulette
 
-The French Terminal Roulette programm consists of two classes:
+The French Terminal Roulette programm is implemented through object-orientated 
+python-programming and consists of two classes:
 
 `Player`, which manages player-specific data. An object of the `Player` class
 stores the `Player`'s name, his available money, and the bets that the user

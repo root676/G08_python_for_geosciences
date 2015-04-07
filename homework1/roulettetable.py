@@ -22,7 +22,7 @@ class RouletteTable:
         self.moneyOnTable = 0
 
     def starting_playing(self):
-        playername = raw_input("\n\n" \
+        playername = raw_input("\n \n" \
             "                  Welcome to                    \n" \
             "    ______                    _             __  \n" \
             "   / _ __/__  _________ ___  (_)___  ____ _/ /  \n" \
@@ -37,7 +37,7 @@ class RouletteTable:
             "                                                \n" \
             "                                                \n" \
             "Terminal Roulette allows you to play French Roulette \n" \
-            "from the comfort of your favorite terminal.\n\n" \
+            "from the comfort of your favorite terminal.\n \n" \
             "Please enter your name: ")
         # if name contains numbers, then the player will be asked if it's really his name - if not then the name can be changed
         while any(c.isdigit() for c in playername):
@@ -196,6 +196,7 @@ class RouletteTable:
                 # check if player has money left to bet
                 if self.playerOnTable.getmoneystatus() == 0:
                     print('You have no money left to bet. Starting Roulette...')
+                    return
 
                 # ask if user wants to bet on another option + check if input valid
                 while True:

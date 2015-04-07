@@ -44,8 +44,9 @@ class Player:
 
     # add money to players money
     def wins(self,money):
-        print('You have won {} Euro',money)
+        print('You have won {} Euro'.format(money))
         self.money += money
+        return money
 
     #  take money from players money
     def loses(self,money):

@@ -80,6 +80,11 @@ class RouletteTable:
         self.payout_phase()
         self.nextround()
 
+        # check if player has money left to bet
+        if self.playerOnTable.getmoneystatus() == 0:
+            print('Sorry - You have no money left to bet.')
+            self.stop_playing()
+
         # asking player if he wants to play again + check if input is valid
         while True:
             answer = raw_input("Do you want to play another round? (y/n) ").lower()
@@ -188,10 +193,15 @@ class RouletteTable:
                 # save/log the bets
                 self.playerOnTable.bets(mainoption, option, money)
 
+                # check if player has money left to bet
+                if self.playerOnTable.getmoneystatus() == 0:
+                    print('You have no money left to bet. Starting Roulette...')
+
                 # ask if user wants to bet on another option + check if input valid
                 while True:
                     answer = raw_input("To you want to bet on another option? (y/n): ").lower()
                     if answer in ['no','n','nein']:
+                        print('Starting Roulette...')
                         return
                     elif answer in ['yes','y','ja']:
                         break

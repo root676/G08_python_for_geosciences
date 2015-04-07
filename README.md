@@ -9,12 +9,13 @@ homework1: This folder contains all Scripts for the Commandline Roulette
 # Aufgabe
 
 The following is required when handing in the exercise:
- A short (1-3) pages report explaining what the program is doing, its structure and how the functions
-and/or modules work together. Somebody reading this document should nd it easy to start reading
-the source code. No source code in this document. This can also be a simple README text le.
- Documented python source code.
-After I had a chance to look at the source code I will make appointments with each group to have a short
-(10-15 min) talk about the exercise. Hand in of the exercise will be handled in TUWEL.
+* A short (1-3) pages report explaining what the program is doing, its structure and how the functions
+and/or modules work together. Somebody reading this document should find it easy to start reading
+the source code. No source code in this document. This can also be a simple README text 
+
+* Documented python source code.
+  After I had a chance to look at the source code I will make appointments with each group to have a short
+  (10-15 min) talk about the exercise. Hand in of the exercise will be handled in TUWEL.
 
 # Report
 

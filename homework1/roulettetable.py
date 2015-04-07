@@ -116,7 +116,7 @@ class RouletteTable:
 
                 try:
                     mainoption = int(mainoption)
-                    if mainoption < 1:
+                    if mainoption < 1 or mainoption > 7::
                         raise ValueError
                 except ValueError:
                     print("\nThis is not a valid number! Please try it again.")

@@ -1,0 +1,68 @@
+
+Welcome to the documentation of the Python Course for Geoscience!
+=================================================================
+
+
+
+Terminal Roulette
+-----------------
+
+Whats the task of the first assignment?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The aim is to test our knowledge in python by programming
+a terminal roulette. These means that the user should be asked
+by the programm on what the user wants to bet and wich amount of 
+money he wants to set. The betting options are the same like at a
+real roulette table. 
+
+
+
+How was it implemented?
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The implementation is object oriented which makes the code easier to unterstand
+and allows a fast error detection if the methods of the classes are small enough.
+For this assignment 2 classes are used which can be found in __roulettetable.py__
+and __player.py__.
+
+An object of the  __player-class__ contains name and bets of the user who wants 
+to play on the roulette table as well as the money the user bring to the table. 
+When the player sets a bet or more, the money will be taken from his pool and 
+registered with the specific betting option.
+
+In contrast, an object of the __roulettetable-class__ can hold the player which is playing on 
+the roulette table. Also the betted money which is laying on the table. For the payouts 
+the object also holds the current number of the roulette which is chosen by random. 
+
+At the beginning when the player starts the game, he will be asked for his name as well
+as for the amount of money he brings to the table. If the name contains numbers, 
+he will be asked if that's really correct or if he wants to change it.
+After that, the player will be informed about the rules and afterwards the player can the 
+betting phase starts.
+
+He can choose between 6 main betting options which will splitted into the the detailed betting options
+when he is choosing one of them. To many options on the first page would be overwhelmed for 
+the player. He is allowed to set several bets with different amount of money until he has
+no money left, but it is to say that the player can only bet as much money as he has but
+not more. If the player finished setting his bets the betting phase ends and the roulette will
+be rotating which means it gives a random number.
+
+With this number and the players bets the payout will be evaluated and bought out.
+Players money increases if he wants and after informations about the wins and losses
+he is able to start another round, but only if there is some money left.
+
+
+comments
+^^^^^^^^
+
+In the whole program there are a lot of checks to catch all the input errors made by the 
+user. To program should shut down if the user makes something wrong, so he has always the 
+possibility to gives the specific input again. This should improve the usability.
+
+
+
+
+
+
+

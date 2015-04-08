@@ -43,7 +43,8 @@ class Player:
     # save the bets for the specific user
     def bets(self,mainoption,option,money):
         """
-        method for storing input bets to the bet-attribute of the player-object
+        method for storing information about bets, made at 
+        the RouletteTable-object to the bet-attribute of the player-object
 
         Paramters
         ---------

@@ -77,6 +77,15 @@ class Player:
 
     # give back all main bet options which are set
     def getbetoptions(self):
+        """
+        method that lists the dicts with infomration about
+        made bets, stored in the player-object
+
+        returns
+        -------
+        list
+            list containing the betted options
+        """
         return self.bet.keys()
 
     # gives the money for the betted option

@@ -42,6 +42,25 @@ class Player:
 
     # save the bets for the specific user
     def bets(self,mainoption,option,money):
+        """
+        method for storing input bets to the bet-attribute of the player-object
+
+        Paramters
+        ---------
+        mainoption: int
+            primary bet specification
+        option: int
+            secondary bet specification
+        money: float
+            money betted on specified options
+
+        returns
+        -------
+        self.bet: dict
+            nested dict containing all specified bet-options
+            and betted amount of money following this
+            dict-pattern {mainoption:{option:money}}
+        """
         bet_mainoptions = self.bet.get(mainoption)
         # if main-option does not exists, create it otherwise...
         if bet_mainoptions == None:

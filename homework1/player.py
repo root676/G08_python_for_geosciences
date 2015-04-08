@@ -19,6 +19,23 @@ class Player:
     
     # definition of player properties (name, money he brings, bets he sets on the table)
     def __init__(self,playername,money_set):
+        """
+        constructor-function of the player-object
+        stores username, money brought to table and betted options to player-object
+
+        Paramters
+        ---------
+        playername: string
+            input username
+        money_set: int
+            input amount of money
+
+        Returns
+        -------
+        Player: object
+            player-object which stores username,
+            money brought to table and betted options
+        """
         self.name=playername
         self.money=money_set
         self.bet={}

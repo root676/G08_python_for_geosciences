@@ -78,7 +78,6 @@ class RouletteTable:
         self.betting_phase()
         self.rotate_roulette()
         self.payout_phase()
-        self.nextround()
 
         # check if player has money left to bet
         if self.playerOnTable.getmoneystatus() == 0:
@@ -93,6 +92,7 @@ class RouletteTable:
             elif answer not in ['yes','y','ja']:
                 print('Not valid answer. Please give y/yes or n/no ')
             else:
+                self.nextround()
                 self.betting_phase()
 
 
@@ -210,8 +210,8 @@ class RouletteTable:
                         print('This is not valid answer. You have to answer either y/yes or n/no')
 
     def rotate_roulette(self):
-        self.roulette_number = random.randint(0, 36)
-        print("\nThe roulette stopped at number {} !".format(self.roulette_number))
+        self.roulette_number = 32 #random.randint(0, 36)
+        print("\nThe roulette stopped at number {} ({}) !".format(self.roulette_number,self.getcolor()))
 
 
     # get color of the Roulette number
@@ -219,7 +219,7 @@ class RouletteTable:
         if self.roulette_number in [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]:
             return 'red'
         elif self.roulette_number == 0:
-            return 'No color (Zero)'
+            return 'No color [Zero]'
         else:
             return 'black'
 

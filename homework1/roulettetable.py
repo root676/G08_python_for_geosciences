@@ -225,12 +225,12 @@ class RouletteTable:
 
     # check if Roulette number is even or odd
     def checkeven(self):
-        if self.roulette_number % 2 > 0:
-            return False
-        elif self.roulette_number == 0:
-            return None
+        if self.roulette_number == 0:
+            return ''
+        elif self.roulette_number % 2 > 0:
+            return 'odd'
         else:
-            return True
+            return 'even'
 
     # add money to the table
     def addmoney2table(self,money):

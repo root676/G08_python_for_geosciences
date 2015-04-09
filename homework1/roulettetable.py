@@ -217,11 +217,11 @@ class RouletteTable:
     # get color of the Roulette number
     def getcolor(self):
         if self.roulette_number in [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]:
-            return 'Red'
+            return 'red'
         elif self.roulette_number == 0:
             return 'No color (Zero)'
         else:
-            return 'Black'
+            return 'black'
 
     # check if Roulette number is even or odd
     def checkeven(self):

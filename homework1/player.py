@@ -12,11 +12,11 @@
 #!/usr/bin/env python
 
 # purpose of player.py
-# player.py contains code for the construction of a player-class 
+# player.py contains code for the construction of a player-class
 # a player can play on the roulette table and win or lose money
 
 class Player:
-    
+
     # definition of player properties (name, money he brings, bets he sets on the table)
     def __init__(self,playername,money_set):
         """
@@ -43,7 +43,7 @@ class Player:
     # save the bets for the specific user
     def bets(self,mainoption,option,money):
         """
-        method for storing information about bets, made at 
+        method for storing information about bets, made at
         the RouletteTable-object to the bet-attribute of the player-object
 
         Paramters
@@ -94,7 +94,7 @@ class Player:
 
     # add money to players money
     def wins(self,money):
-        print('You have won {} Euro'.format(money))
+        #print('You have won {} Euro'.format(money))
         self.money += money
         return money
 
@@ -108,8 +108,8 @@ class Player:
     # give back the money status
     def getmoneystatus(self):
         return self.money
-    
-    # erase all bets for a new game 
+
+    # erase all bets for a new game
     def cleanupbets(self):
         self.bet = {}
 

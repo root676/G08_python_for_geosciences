@@ -88,18 +88,59 @@ class Player:
         """
         return self.bet.keys()
 
-    # gives the money for the betted option
     def getbettedmoney(self,mainoption,option):
+        """
+        method that returns the amount of money, bettet on a specific option.
+
+        Parameters
+        ----------
+        mainoption: int
+            primary bet specification
+        option: int
+            secondary bet specification
+
+        returns
+        -------
+        float
+            money betted by the on options
+        """
         return self.bet[mainoption].get(option)
 
-    # add money to players money
     def wins(self,money):
+        """
+        adds the money that was won through bets from the players budget
+
+        Parameters
+        ----------
+        money: float
+            won money paid out by the RouletteTable
+
+        returns
+        -------
+        money: float
+            return total amount of money owned by player
+        """
         #print('You have won {} Euro'.format(money))
         self.money += money
         return money
 
     #  take money from players money
     def loses(self,money):
+        """
+        subtracts the money that was lost through bets from the players budget
+
+        Parameters
+        ----------
+        money: float
+            money lost through bets on the RouletteTable
+
+        returns
+        -------
+        False if money lost through bet is greater than the players
+        budget, else returns True
+        money: float 
+            returns the total amount of money owned by player
+        """
         if money > self.money:
             return False
         self.money -= money
@@ -107,9 +148,25 @@ class Player:
 
     # give back the money status
     def getmoneystatus(self):
+        """
+        returns the current budget of the player
+        
+        returns:
+        --------
+        money: float
+            current budget of the player-object
+        """
         return self.money
 
     # erase all bets for a new game
     def cleanupbets(self):
+        """
+        erases all information about bets stored in the bet dict
+        
+        returns:
+        --------
+        dict
+            empty bet dict in the player-attributes
+        """
         self.bet = {}
 

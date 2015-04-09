@@ -17,11 +17,25 @@ from player import Player
 class RouletteTable:
     """ the table class - persons can bet and win/lose money"""
     def __init__(self):
+        """
+        constructor-function for the RouletteTable-object
+        stores the roulette number resulting from a wheel turn, 
+        the player-object that plays is on the table, money the player-object brought to the table
+        
+        returns
+        -------
+        RouletteTable: object
+            returns the RouletteTable-object with initial attributes set
+            according to constructor function
+        """
         self.roulette_number = None
         self.playerOnTable = None
         self.moneyOnTable = 0
 
     def starting_playing(self):
+        """
+        method that starts the game and calls further methods
+        """
         playername = raw_input("\n \n" \
             "                  Welcome to                    \n" \
             "    ______                    _             __  \n" \
@@ -95,11 +109,11 @@ class RouletteTable:
                 self.nextround()
                 self.betting_phase()
 
-
-
-    # starting the betting phase: the player can choose the option and bet a specific amount of money
     def betting_phase(self):
-
+        """
+        method starting the betting-phase: the player can choose on which numbers/colors he wants
+        to bet, and specifies the amount of money he wants to place on these bets
+        """
         # the user can set up several bets (as much as he wants)
         while True:
             # choosing the option
@@ -210,12 +224,25 @@ class RouletteTable:
                         print('This is not valid answer. You have to answer either y/yes or n/no')
 
     def rotate_roulette(self):
-        self.roulette_number = 32 #random.randint(0, 36)
+        """
+        method that rotates the roulette and returns a number between 0 and 36
+        
+        returns
+        -------
+        roulette_number: int
+            winning number for the roulette game
+        """
+        self.roulette_number = random.randint(0, 36)
         print("\nThe roulette stopped at number {} ({}) !".format(self.roulette_number,self.getcolor()))
 
-
-    # get color of the Roulette number
     def getcolor(self):
+        """
+        method that determines wether the resulting number has red, black or no color (in case of 0)
+        returns
+        -------
+        string
+            string stating the color
+        """
         if self.roulette_number in [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]:
             return 'red'
         elif self.roulette_number == 0:
@@ -223,8 +250,15 @@ class RouletteTable:
         else:
             return 'black'
 
-    # check if Roulette number is even or odd
     def checkeven(self):
+        """
+        method that checks if the resulting number is even or odd
+        
+        returns
+        -------
+        string
+            string stating even / odd / ''
+        """
         if self.roulette_number == 0:
             return ''
         elif self.roulette_number % 2 > 0:
@@ -232,16 +266,44 @@ class RouletteTable:
         else:
             return 'even'
 
-    # add money to the table
     def addmoney2table(self,money):
+        """
+        method that adds the money brought to the table by the player-object.
+        
+        Parameters
+        ----------
+        money: float
+            money brought by player
+            
+        returns
+        -------
+        moneyOnTable: float
+            money at table for betting
+        """
         self.moneyOnTable += money
 
-    # take money from the table
     def takemoneyfromtable(self,money):
+        """
+        method that subtracts money from the table
+        
+        Parameters
+        ----------
+        money: float
+            money to be subtracted from the table
+            
+        returns
+        -------
+        moneyOnTable: float
+            money currently available for bets on the table
+        """
         self.moneyOnTable -= money
 
     # this phase goes through all wins and loses
     def payout_phase(self):
+        """
+        method that calculates the money paid out by the table through
+        checking the players set betoptions against the drawn number. 
+        """
         won_money = 0
         mainoptions = self.playerOnTable.getbetoptions()
         for mainoption in mainoptions:
@@ -279,17 +341,35 @@ class RouletteTable:
         print("You won {} Euro and lost {} Euro!\nYou now have {} Euro in total.\n".format(won_money,self.moneyOnTable,self.playerOnTable.getmoneystatus()))
 
 
-    # gives back the winning quote for a specific bet-option
+
     def winning_quote(self, mainoption):
+        """
+        method that gives back the winning quote for a specific bet-option
+        
+        Parameters
+        ----------
+        mainoption: int
+            primary bet specification
+            
+        returns
+        -------
+        int
+            multiplicator for the input money that will paid out
+        """
         return [36,2,2,2,2,3,3][mainoption-1]
 
-    # delete saved number and color of the number  (not really necessary but 'cleaner'/more similar to Roulette)
     def nextround(self):
+        """
+        method that cleans the table and commandline for another round
+        deletes saved number and color of the number stored in table-attributes
+        """
         self.roulette_number = None
         self.moneyOnTable = 0
         os.system('cls' if os.name == 'nt' else 'clear')
 
-    # stops the program and gives the status of players money
     def stop_playing(self):
+        """
+        method that stops the program and gives the status of the players-object money.
+        """
         print('You are leaving the Roulette table with {} Euro.'.format(self.playerOnTable.getmoneystatus()))
         exit()

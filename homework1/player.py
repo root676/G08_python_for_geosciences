@@ -19,12 +19,49 @@ class Player:
     
     # definition of player properties (name, money he brings, bets he sets on the table)
     def __init__(self,playername,money_set):
+        """
+        constructor-function of the player-object
+        stores username, money brought to table and betted options to player-object
+
+        Paramters
+        ---------
+        playername: string
+            input username
+        money_set: int
+            input amount of money
+
+        Returns
+        -------
+        Player: object
+            player-object which stores username,
+            money brought to table and betted options
+        """
         self.name=playername
         self.money=money_set
         self.bet={}
 
     # save the bets for the specific user
     def bets(self,mainoption,option,money):
+        """
+        method for storing information about bets, made at 
+        the RouletteTable-object to the bet-attribute of the player-object
+
+        Paramters
+        ---------
+        mainoption: int
+            primary bet specification
+        option: int
+            secondary bet specification
+        money: float
+            money betted on specified options
+
+        returns
+        -------
+        self.bet: dict
+            nested dict containing all specified bet-options
+            and betted amount of money following this
+            dict-pattern {mainoption:{option:money}}
+        """
         bet_mainoptions = self.bet.get(mainoption)
         # if main-option does not exists, create it otherwise...
         if bet_mainoptions == None:
@@ -40,6 +77,15 @@ class Player:
 
     # give back all main bet options which are set
     def getbetoptions(self):
+        """
+        method that lists the dicts with infomration about
+        made bets, stored in the player-object
+
+        returns
+        -------
+        list
+            list containing the betted options
+        """
         return self.bet.keys()
 
     # gives the money for the betted option

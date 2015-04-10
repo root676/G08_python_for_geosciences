@@ -162,11 +162,6 @@ class Player:
     def cleanupbets(self):
         """
         erases all information about bets stored in the bet dict
-        
-        returns:
-        --------
-        dict
-            empty bet dict in the player-attributes
         """
         self.bet = {}
 

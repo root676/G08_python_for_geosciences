@@ -237,7 +237,8 @@ class RouletteTable:
 
     def getcolor(self):
         """
-        method that determines wether the resulting number has red, black or no color (in case of 0)
+        method that determines whether the resulting number has red, black or no color (in case of 0)
+        
         returns
         -------
         string

@@ -65,7 +65,7 @@ class RouletteTable:
 
 
         # set up the description for the user
-        introduction = ("\n\nWelcome to Terminal Roulette," + playername + "\n\n" \
+        introduction = ("\n\nWelcome to Terminal Roulette, " + playername + "\n\n" \
         "How does French Roulette work?\n" \
         "At the beginning you decide how much money you want to bring to the \n" \
         "Roulette Table. The you can choose between 6 different types of bet, \n" \

@@ -19,9 +19,9 @@ class RouletteTable:
     def __init__(self):
         """
         constructor-function for the RouletteTable-object
-        stores the roulette number resulting from a wheel turn, 
+        stores the roulette number resulting from a wheel turn,
         the player-object that plays is on the table, money the player-object brought to the table
-        
+
         returns
         -------
         RouletteTable: object
@@ -65,7 +65,7 @@ class RouletteTable:
 
 
         # set up the description for the user
-        introduction = ("\n\nWelcome to Terminal Roulette, " + playername + "\n\n" \
+        introduction = ("\n\nWelcome to Terminal Roulette," + playername + "\n\n" \
         "How does French Roulette work?\n" \
         "At the beginning you decide how much money you want to bring to the \n" \
         "Roulette Table. The you can choose between 6 different types of bet, \n" \
@@ -92,6 +92,7 @@ class RouletteTable:
         self.betting_phase()
         self.rotate_roulette()
         self.payout_phase()
+        self.playerOnTable.cleanupbets()
 
         # check if player has money left to bet
         if self.playerOnTable.getmoneystatus() == 0:
@@ -108,6 +109,9 @@ class RouletteTable:
             else:
                 self.nextround()
                 self.betting_phase()
+                self.rotate_roulette()
+                self.payout_phase()
+                self.playerOnTable.cleanupbets()
 
     def betting_phase(self):
         """
@@ -226,7 +230,7 @@ class RouletteTable:
     def rotate_roulette(self):
         """
         method that rotates the roulette and returns a number between 0 and 36
-        
+
         returns
         -------
         roulette_number: int
@@ -238,7 +242,7 @@ class RouletteTable:
     def getcolor(self):
         """
         method that determines whether the resulting number has red, black or no color (in case of 0)
-        
+
         returns
         -------
         string
@@ -254,7 +258,7 @@ class RouletteTable:
     def checkeven(self):
         """
         method that checks if the resulting number is even or odd
-        
+
         returns
         -------
         string
@@ -270,12 +274,12 @@ class RouletteTable:
     def addmoney2table(self,money):
         """
         method that adds the money brought to the table by the player-object.
-        
+
         Parameters
         ----------
         money: float
             money brought by player
-            
+
         returns
         -------
         moneyOnTable: float
@@ -286,12 +290,12 @@ class RouletteTable:
     def takemoneyfromtable(self,money):
         """
         method that subtracts money from the table
-        
+
         Parameters
         ----------
         money: float
             money to be subtracted from the table
-            
+
         returns
         -------
         moneyOnTable: float
@@ -303,7 +307,7 @@ class RouletteTable:
     def payout_phase(self):
         """
         method that calculates the money paid out by the table through
-        checking the players set betoptions against the drawn number. 
+        checking the players set betoptions against the drawn number.
         """
         won_money = 0
         mainoptions = self.playerOnTable.getbetoptions()
@@ -338,7 +342,7 @@ class RouletteTable:
                 won_money += self.playerOnTable.wins(self.winning_quote(mainoption)*money)
                 self.takemoneyfromtable(money)
 
-        self.playerOnTable.loses(self.moneyOnTable)
+        #self.playerOnTable.loses(self.moneyOnTable)
         print("You won {} Euro and lost {} Euro!\nYou now have {} Euro in total.\n".format(won_money,self.moneyOnTable,self.playerOnTable.getmoneystatus()))
 
 
@@ -346,12 +350,12 @@ class RouletteTable:
     def winning_quote(self, mainoption):
         """
         method that gives back the winning quote for a specific bet-option
-        
+
         Parameters
         ----------
         mainoption: int
             primary bet specification
-            
+
         returns
         -------
         int

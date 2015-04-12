@@ -9,7 +9,7 @@ homework1: This folder contains all Scripts for the Commandline Roulette
       roulettetable.py
 
 
-# Whats the task of the first assignment?
+# Introduction and Requirements
 
 The aim is to test our knowledge in python by implementing
 French Roulette as a terminal application. The user can bet an arbitrary
@@ -18,7 +18,7 @@ on the outcome of the roulette. As this is a only an exercise,
 not all betting options of real-life French Roulette are implemented.
 
 
-## French Terminal Roulette
+# French Terminal Roulette
 
 The French Terminal Roulette programm can be started with the `main.py` file. 
 The program is implemented through object-orientated 
@@ -29,13 +29,13 @@ Should an input error be detected, the program does not shut down, but gives the
 the opportunity to correct his input. This improves the usability. 
 The game consists of two basic classes:
 
-### `Player` 
+## `Player` 
 Manages player-specific data. An object of the `Player` class
 stores the `Player`'s name, his available money he brought to the table, and the bets
 that the user placed in the current round. A player can lose `money` (by betting it) 
 and gain `money` (by winning).
 
-### `RouletteTable`
+## `RouletteTable`
 Implements the user interface as well as the business
 logic of the roulette game. It can store the `roulette_number` (the number selected
 after the roulette wheel is turned), the betted money that

@@ -1,5 +1,5 @@
 # G08_python_for_geosciences
-This repository contains all sourcecode produced during the class 120.050 'Python for geosciences' (ViennaUniversity of Technology)
+This repository contains all sourcecode produced during the class 120.050 'Python for geosciences' (Vienna University of Technology)
 
 
 Folder Structure:
@@ -11,35 +11,23 @@ homework1: This folder contains all Scripts for the Commandline Roulette
 
 # Whats the task of the first assignment?
 
-The aim is to test our knowledge in python by programming
-a terminal roulette. These means that the user should be asked
-by the programm on what the user wants to bet and wich amount of 
-money he wants to set. The betting options are the same like at a
-real roulette table, but with fewer input-options to lower the 
-level of complexity.
+The aim is to test our knowledge in python by implementing
+French Roulette as a terminal application. The user can bet an arbitrary
+amount of money on different betting options, and win or loose money depending
+on the outcome of the roulette. As this is a only an exercise, 
+not all betting options of real-life French Roulette are implemented.
 
-
-# Requirements
-
-The following is required when handing in the exercise:
-* A short (1-3) pages report explaining what the program is doing, its structure and how the functions
-and/or modules work together. Somebody reading this document should find it easy to start reading
-the source code. No source code in this document. This can also be a simple README text
-
-* Documented python source code.
-  After I had a chance to look at the source code I will make appointments with each group to have a short
-  (10-15 min) talk about the exercise. Hand in of the exercise will be handled in TUWEL.
 
 ## French Terminal Roulette
 
 The French Terminal Roulette programm can be started with the `main.py` file. 
 The program is implemented through object-orientated 
-python-programming, which makes the code easier to unterstand
-and allows a fast error detection considering the small code-length of methods.
-The whole program ensures stability through a lot of checks to catch all the 
-input errors made by the user. The program should shut down if the user types in 
-something wrong, so there is always the possibility to give the specific input again.
-This should improve the usability. The game consists of two basic classes:
+python-programming, which makes the code more readable and easier
+to debug by splitting the code base into short, easy to understand methods.
+The program ensures stability through frequent checks to catch input errors made by the user. 
+Should an input error be detected, the program does not shut down, but gives the user
+the opportunity to correct his input. This improves the usability. 
+The game consists of two basic classes:
 
 ### `Player` 
 Manages player-specific data. An object of the `Player` class

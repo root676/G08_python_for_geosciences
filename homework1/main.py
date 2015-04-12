@@ -2,16 +2,13 @@
 # Name:        main
 # Purpose:     starts a roulette game with the user
 #
-# Author:      Dan
+# Authors:     Stefan Fnord, Clemens Raffler, Daniel Zamojski  
 #
 # Created:     25.03.2015
 # Copyright:   (c) Dan 2015
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 #!/usr/bin/env python
-
-#purpose of main.py:
-#main.py imports the classes RouletteTable and Player and starts the roulette-game.
 
 from roulettetable import RouletteTable
 from player import Player

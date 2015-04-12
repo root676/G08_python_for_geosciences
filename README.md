@@ -37,7 +37,7 @@ The program is implemented through object-orientated
 python-programming, which makes the code easier to unterstand
 and allows a fast error detection considering the small code-length of methods.
 The whole program ensures stability through a lot of checks to catch all the 
-input errors made by the user. To program should shut down if the user types in 
+input errors made by the user. The program should shut down if the user types in 
 something wrong, so there is always the possibility to give the specific input again.
 This should improve the usability. The game consists of two basic classes:
 

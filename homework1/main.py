@@ -5,7 +5,7 @@
 # Authors:     Stefan Fnord, Clemens Raffler, Daniel Zamojski  
 #
 # Created:     25.03.2015
-# Copyright:   (c) Dan 2015
+# Copyright:   (c) Stefan Fnord, Clemens Raffler, Daniel Zamojski 2015
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 #!/usr/bin/env python

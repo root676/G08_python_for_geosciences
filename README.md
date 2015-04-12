@@ -9,7 +9,7 @@ homework1: This folder contains all Scripts for the Commandline Roulette
       roulettetable.py
 
 
-# Introduction and Requirements
+# Introduction
 
 The aim is to test our knowledge in python by implementing
 French Roulette as a terminal application. The user can bet an arbitrary

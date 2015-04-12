@@ -20,7 +20,7 @@ not all betting options of real-life French Roulette are implemented.
 
 # French Terminal Roulette
 
-The French Terminal Roulette programm can be started with the `main.py` file. 
+The French Terminal Roulette program can be started with the `main.py` file. 
 The program is implemented through object-orientated 
 python-programming, which makes the code more readable and easier
 to debug by splitting the code base into short, easy to understand methods.
@@ -45,21 +45,21 @@ user for the Player name and how much money he wants to bring to the table.
 It then saves those values to a newly created object of the `Player` class
 called `playerOnTable`.
 
-After this inital introduction phase the actual roulette game begins,
+After this initial introduction phase the actual roulette game begins,
 represented by four methods:
 
 `betting_phase()` - The betting phase: The user can choose between 6 main betting 
 options which will split into detailed betting options when one of them is selected.
 Too many options on the first page would be overwhelming for the player. 
 He is allowed to set several bets with different amount of money until he has
-no money left to bet. If it's the case the user will be informes as well as he tries to
+no money left to bet. If it's the case the user will be informed as well as he tries to
 bet more money than he has. He can repeat this betting process as often as he likes 
 or until he runs out of money. When either of this happens the `rotate_roulette()` method
 selects a random integer between 0 and 36, and stores this number in the 
 `roulette_number` variable of the `RouletteTable` class. Next the `payout_phase()` method 
 is called. It checks the bets saved in `playerOnTable` against the `roulete_number`. 
 Should the user have betted on a winning option, the `winning_quote()` method gives back the 
-winning quote for the further calclulation of how much he won. The corresponding amount can be added 
+winning quote for the further calculation of how much he won. The corresponding amount can be added 
 to `money` of `playerOnTable`. Finally the `RouletteTable` resets by `nextround()` which means it
 deletes saved roulette number of the current round, the betted money on the table and clears the
 terminal window. In addition the program offers the user the choice whether

@@ -101,6 +101,10 @@ class RouletteTable:
 
         # asking player if he wants to play again + check if input is valid
         while True:
+            # check if player has money left to bet
+            if self.playerOnTable.getmoneystatus() == 0:
+                print('Sorry - You have no money left to bet.')
+                self.stop_playing()
             answer = raw_input("Do you want to play another round? (y/n) ").lower()
             if answer in ['no','n','nein']:
                 self.stop_playing()

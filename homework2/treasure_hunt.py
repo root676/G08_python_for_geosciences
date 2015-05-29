@@ -39,5 +39,14 @@ g = response.readlines()
 
 
 
+# Young I?m tall, old I?m short, I love to glow, breath is my foe.
+q2 = "candle"
+
+
+# What digit is the most frequent between the numbers 1 and 1000?
+q3 = ""
+
+
+
 
 

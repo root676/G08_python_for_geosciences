@@ -32,7 +32,7 @@ response = urllib2.urlopen(download_page+q1+".csv")
 q2 = "candle"
 
 clue1_array = np.loadtxt(response,skiprows=1, delimiter=',')
-
+del response
 filename2part1 = str(clue1_array[0,1])
 print filename2part1
 
@@ -53,4 +53,10 @@ plt.hist(onetothousand_vector, bins=10)
 plt.show()
 
 q3 = 1
+
+# Stay hungry, stay ......, Steve Jobs
+q4 = "foolish"
+
+response = urllib.urlopen(download_page+q1+"_"+q4+".nc")
+
 

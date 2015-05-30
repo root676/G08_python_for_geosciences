@@ -1,15 +1,14 @@
 #-------------------------------------------------------------------------------
-# Name:        module1
-# Purpose:
+# Name:        treasure_hunt.py
+# Purpose:     this routine helps to find the treasure
 #
-# Author:      Dan
+# Authors:     Stefan Fnord, Clemens Raffler, Daniel Zamojski
 #
 # Created:     29.05.2015
-# Copyright:   (c) Dan 2015
+# Copyright:   (c) Stefan Fnord, Clemens Raffler, Daniel Zamojski 2015
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 #!/usr/bin/env python
-
 
 
 import csv
@@ -18,29 +17,36 @@ import urllib2
 import numpy as np
 import matplotlib.pyplot as plt
 
-
-
 download_page = "http://rs.geo.tuwien.ac.at/downloads/cpa/"
 
 
 
 # It has 4 legs but cannot walk.
-q1 = "table"
-response = urllib2.urlopen(download_page+q1+".csv")
+filename1 = "table"
+response = urllib2.urlopen(download_page+filename1+".csv")
+
+
 
 # Young I?m tall, old I?m short, I love to glow, breath is my foe.
-q2 = "candle"
+column1 = "candle"
 
-clue1_array = np.loadtxt(response,skiprows=1, delimiter=',')
+
+# load header from file
+for idx,elem in enumerate(response.readline()[:-1].split(',')):
+    # if answer of last question is in the header, then query the data
+    if elem==column1:
+        break
+
+else:
+    print column1+" not found in header of the file - check the last question"
+    exit
+
+
+# load data from file
+clue1_array = np.loadtxt(response,skiprows=0, delimiter=',')
 del response
-filename2part1 = str(clue1_array[0,1])
-print filename2part1
-
-
-
 
 # What digit is the most frequent between the numbers 1 and 1000?
-#mir fiel keine Numpy Lösung ein...
 thousandlist = range(1,1001)
 digitlist =[]
 for element in thousandlist:
@@ -51,12 +57,16 @@ onetothousand_vector = np.array(digitlist)
 
 plt.hist(onetothousand_vector, bins=10)
 plt.show()
+row1 = 0
 
-q3 = 1
+filename2part1 = clue1_array[row1][idx]
+if filename2part1==int(filename2part1):
+    filename2part1 = int(filename2part1)
 
 # Stay hungry, stay ......, Steve Jobs
-q4 = "foolish"
+filename2part2 = "foolish"
 
-response = urllib.urlopen(download_page+q1+"_"+q4+".nc")
-
+# download file
+print download_page+str(filename2part1)+'_'+filename2part2+'.nc'
+response = urllib2.urlopen(download_page+filename2part1+'_'+filename2part2+'.nc')
 

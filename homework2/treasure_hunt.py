@@ -28,13 +28,15 @@ download_page = "http://rs.geo.tuwien.ac.at/downloads/cpa/"
 q1 = "table"
 response = urllib2.urlopen(download_page+q1+".csv")
 
-clue1_array = np.loadtxt(response,skiprows=1, delimiter=',')
-
-filename2part1 = str(clue1_array[0,0])
-print filename2part1
-
 # Young I?m tall, old I?m short, I love to glow, breath is my foe.
 q2 = "candle"
+
+clue1_array = np.loadtxt(response,skiprows=1, delimiter=',')
+
+filename2part1 = str(clue1_array[0,1])
+print filename2part1
+
+
 
 
 # What digit is the most frequent between the numbers 1 and 1000?

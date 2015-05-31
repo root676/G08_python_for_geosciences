@@ -13,6 +13,7 @@
 
 import csv
 import urllib2
+import netCDF4
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -57,9 +58,13 @@ onetothousand_vector = np.array(digitlist)
 
 plt.hist(onetothousand_vector, bins=10)
 plt.show()
-row1 = 0
 
-filename2part1 = clue1_array[row1][idx]
+# TODO - hier noch aus dem histogramm bzw aus array die h?ufigste Zahl berechen
+# und an row1 uebergeben!
+row1 = 1
+
+# read from file (row1-1 because without header)
+filename2part1 = clue1_array[row1-1][idx]
 if filename2part1==int(filename2part1):
     filename2part1 = int(filename2part1)
 
@@ -68,5 +73,8 @@ filename2part2 = "foolish"
 
 # download file
 print download_page+str(filename2part1)+'_'+filename2part2+'.nc'
-response = urllib2.urlopen(download_page+filename2part1+'_'+filename2part2+'.nc')
+
+nc = netCDF4.Dataset(download_page+str(filename2part1)+'_'+filename2part2+'.nc')
+print nc
+#response = urllib2.urlopen(download_page+filename2part1+'_'+filename2part2+'.nc')
 

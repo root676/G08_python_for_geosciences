@@ -17,6 +17,7 @@ import netCDF4
 
 import numpy as np
 import matplotlib.pyplot as plt
+from collections import Counter
 
 download_page = "http://rs.geo.tuwien.ac.at/downloads/cpa/"
 
@@ -59,9 +60,8 @@ onetothousand_vector = np.array(digitlist)
 plt.hist(onetothousand_vector, bins=10)
 plt.show()
 
-# TODO - hier noch aus dem histogramm bzw aus array die h?ufigste Zahl berechen
-# und an row1 uebergeben!
-row1 = 1
+data = Counter(onetothousand_vector)
+row1 = data.most_common(1)[0][0]
 
 # read from file (row1-1 because without header)
 filename2part1 = clue1_array[row1-1][idx]

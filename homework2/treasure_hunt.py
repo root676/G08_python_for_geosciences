@@ -88,7 +88,30 @@ print download_page+str(filename2part1)+'_'+filename2part2+'.nc'
 #print nc
 #response = urllib2.urlopen(download_page+filename2part1+'_'+filename2part2+'.nc')
 
+nc = Dataset("E:\WinPython-32bit-2.7.6.2_incl_OPALS\PyScripter-v2.5.3\PyScripter\homework2\9_foolish.nc")
+lats = nc.variables['lat'][:]
+lons = nc.variables['lon'][:]
+force = nc.variables['force'][:]
 
+lon_0 = lons.mean()
+lat_0 = lats.mean()
+
+m = Basemap(projection='robin', lat_0=0, lon_0=-100,
+              resolution='l', area_thresh=1000.0)
+
+#%%
+
+lon, lat = np.meshgrid(lons, lats)
+xi, yi = m(lon, lat)
+
+m.drawparallels(np.arange(-80., 81., 10.), labels=[1,0,0,0], fontsize=10)
+m.drawmeridians(np.arange(-180., 181., 10.), labels=[0,0,0,1], fontsize=10)
+m.drawcoastlines()
+m.drawstates()
+m.drawcountries()
+
+cs = m.pcolor(xi,yi,force)
+#plt.show()
 
 
 
@@ -141,12 +164,29 @@ if filename4==int(filename4):
 response = urllib2.urlopen(download_page+filename4+".bin")
 
 # DANIEL: WORKING HERE
+#clue4
+
+file = open("E:\WinPython-32bit-2.7.6.2_incl_OPALS\PyScripter-v2.5.3\PyScripter\homework2\\101010.bin", 'rb')
+print file.read(107)
+
+dt = np.dtype([('sunburnedpenguin', '<i2'), ('newspaper', '<i2'), ('redzebra', '<i2'), ('embarresedskunk', '<i2')])
+
+file4 = np.fromfile("E:\WinPython-32bit-2.7.6.2_incl_OPALS\PyScripter-v2.5.3\PyScripter\homework2\\101010.bin", dtype=dt)
+
+print file4
+
 
 
 
 
 
 #SAMPLE CODE FROM WEB FOR WRITING HDF5 files
+
+#clue5
+
+column5 = "fish"
+variable5a = "towel"
+variable5b ="sunburnedpenguin"
 
 # write netcdffile
 file = NetCDFFile('rectilinear.nc', 'w')

@@ -20,6 +20,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from collections import Counter
 
+# Required for NetCDF basemap plot
+from mpl_toolkits.basemap import Basemap
+from netCDF4 import Dataset
+import matplotlib
+
+
 import h5py
 
 
@@ -96,9 +102,9 @@ force = nc.variables['force'][:]
 lon_0 = lons.mean()
 lat_0 = lats.mean()
 
-m = Basemap(projection='robin', lat_0=0, lon_0=-100,
+m = Basemap(projection='mill', lat_0=0, lon_0=0,
               resolution='l', area_thresh=1000.0)
-
+            
 #%%
 
 lon, lat = np.meshgrid(lons, lats)
@@ -110,7 +116,10 @@ m.drawcoastlines()
 m.drawstates()
 m.drawcountries()
 
-cs = m.pcolor(xi,yi,force)
+z = np.ma.array(force, mask= force==0)
+cmap = matplotlib.colors.ListedColormap(['red'])
+            
+cs = m.pcolor(xi,yi,z, cmap = cmap)
 #plt.show()
 
 

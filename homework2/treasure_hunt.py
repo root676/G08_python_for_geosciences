@@ -94,7 +94,13 @@ print download_page+str(filename2part1)+'_'+filename2part2+'.nc'
 #print nc
 #response = urllib2.urlopen(download_page+filename2part1+'_'+filename2part2+'.nc')
 
-nc = Dataset("E:\WinPython-32bit-2.7.6.2_incl_OPALS\PyScripter-v2.5.3\PyScripter\homework2\9_foolish.nc")
+url = "http://rs.geo.tuwien.ac.at/downloads/cpa/9_foolish.nc"
+f = urllib2.urlopen (url)
+with open(os.path.basename(url), "wb") as local_file:
+          local_file.write(f.read())
+nc = netCDF4.Dataset('9_foolish.nc')
+
+#nc = Dataset("E:\WinPython-32bit-2.7.6.2_incl_OPALS\PyScripter-v2.5.3\PyScripter\homework2\9_foolish.nc")
 lats = nc.variables['lat'][:]
 lons = nc.variables['lon'][:]
 force = nc.variables['force'][:]

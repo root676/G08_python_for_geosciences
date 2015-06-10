@@ -2,7 +2,7 @@
 # Name:        treasure_hunt.py
 # Purpose:     this routine helps to find the treasure
 #
-# Authors:     Stefan Fnord, Clemens Raffler, Daniel Zamojski
+# Authors:     Stefan Fleck, Clemens Raffler, Daniel Zamojski
 #
 # Created:     29.05.2015
 # Copyright:   (c) Stefan Fnord, Clemens Raffler, Daniel Zamojski 2015
@@ -13,8 +13,10 @@
 
 import csv
 import urllib2
+import os
 import netCDF4
-#from Scientific.IO.NetCDF import NetCDFFile
+from netCDF4 import Dataset
+
 import scipy.io
 import numpy as np
 import matplotlib.pyplot as plt
@@ -22,21 +24,15 @@ from collections import Counter
 
 # Required for NetCDF basemap plot
 from mpl_toolkits.basemap import Basemap
-from netCDF4 import Dataset
 import matplotlib
-
-
 import h5py
 
-
 download_page = "http://rs.geo.tuwien.ac.at/downloads/cpa/"
-
 
 
 # It has 4 legs but cannot walk.
 filename1 = "table"
 response = urllib2.urlopen(download_page+filename1+".csv")
-
 
 
 # Young I?m tall, old I?m short, I love to glow, breath is my foe.
@@ -85,22 +81,14 @@ if filename2part1==int(filename2part1):
 filename2part2 = "foolish"
 
 # download file
-print download_page+str(filename2part1)+'_'+filename2part2+'.nc'
+url = str(download_page+str(filename2part1)+'_'+str(filename2part2)+'.nc')
+print "Downloading: " + url
 
-
-# STEFANS CODE - download and plot netcdf
-
-#nc = netCDF4.Dataset(download_page+str(filename2part1)+'_'+filename2part2+'.nc')
-#print nc
-#response = urllib2.urlopen(download_page+filename2part1+'_'+filename2part2+'.nc')
-
-url = "http://rs.geo.tuwien.ac.at/downloads/cpa/9_foolish.nc"
 f = urllib2.urlopen (url)
 with open(os.path.basename(url), "wb") as local_file:
           local_file.write(f.read())
 nc = netCDF4.Dataset('9_foolish.nc')
 
-#nc = Dataset("E:\WinPython-32bit-2.7.6.2_incl_OPALS\PyScripter-v2.5.3\PyScripter\homework2\9_foolish.nc")
 lats = nc.variables['lat'][:]
 lons = nc.variables['lon'][:]
 force = nc.variables['force'][:]
@@ -136,13 +124,19 @@ capitalcity = "canberra"
 filename3_part2 = "mercury"
 filename3 =capitalcity +'_'+filename3_part2+'.npz'
 
-
-
 #response = requests.get('C:\Users\Dan\Downloads\canberra_mercury.npz', stream=True)
 #response = urllib2.urlopen(filename3,'wb')
 
+
+url = download_page+filename3
+print "Downloading: " + url
+
+f = urllib2.urlopen(url)
+with open(os.path.basename(url), "wb") as local_file:
+          local_file.write(f.read())
+
 # load data  TODO: download data; DANIEL: WORKING HERE
-data = np.load('C:\Users\Dan\Downloads\canberra_mercury.npz')
+data = np.load('canberra_mercury.npz')
 
 # gives back all available meta data
 #data.files
@@ -176,27 +170,27 @@ if filename4==int(filename4):
     filename4 = int(filename4)
 
 # download the binary file
-response = urllib2.urlopen(download_page+filename4+".bin")
+url = download_page+str(filename4)+".bin"
+print "Downloading: " + url
+
+f = urllib2.urlopen (url)
+with open(os.path.basename(url), "wb") as local_file:
+          local_file.write(f.read())
+
+file = open("101010.bin", 'rb')
+print file.read(107)
+
 
 # DANIEL: WORKING HERE
 #clue4
 
-file = open("E:\WinPython-32bit-2.7.6.2_incl_OPALS\PyScripter-v2.5.3\PyScripter\homework2\\101010.bin", 'rb')
-print file.read(107)
 
 dt = np.dtype([('sunburnedpenguin', '<i2'), ('newspaper', '<i2'), ('redzebra', '<i2'), ('embarresedskunk', '<i2')])
-
-file4 = np.fromfile("E:\WinPython-32bit-2.7.6.2_incl_OPALS\PyScripter-v2.5.3\PyScripter\homework2\\101010.bin", dtype=dt)
-
+file4 = np.fromfile("101010.bin", dtype=dt)
 print file4
 
 
-
-
-
-
 #SAMPLE CODE FROM WEB FOR WRITING HDF5 files
-
 #clue5
 
 column5 = "fish"

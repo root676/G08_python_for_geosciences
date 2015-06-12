@@ -27,7 +27,6 @@ from mpl_toolkits.basemap import Basemap
 import matplotlib
 import h5py
 
-import pandas as pd
 
 download_page = "http://rs.geo.tuwien.ac.at/downloads/cpa/"
 
@@ -137,7 +136,7 @@ f = urllib2.urlopen(url)
 with open(os.path.basename(url), "wb") as local_file:
           local_file.write(f.read())
 
-# load data  TODO: download data; DANIEL: WORKING HERE
+# load data
 data = np.load('canberra_mercury.npz')
 
 # gives back all available meta data
@@ -203,50 +202,41 @@ variable5a = "towel"
 # What is black and white and red all over?
 variable5b ="sunburnedpenguin"
 
-"""
-# write netcdffile
-file = NetCDFFile('rectilinear.nc', 'w')
-write_rectilinear(file, nodal, 'data', x_coord, y_coord)
-file.close()
-"""
 
+# ----------------- hey ab hier bitte testen (mein pyscripter macht grad probleme); lg Daniel ------------------------------
 
-# ---------------------------   in progress ----------------
+# create hdf5 file
 f = h5py.File('myfile.hdf5','w')
 
-# longitude
-dset = f.create_dataset("longitude", data=arr)
+# longitude for the hdf5 file
+for idx,elem in enumerate(header1):
+    # if answer of last question is in the header, then query the data
+    if elem==column5:
+        break
+else:
+    print column1+" not found in header of the csv file - check the last question"
+    exit
+
+longitude = clue1_array[:][idx]
+#dset = f.create_dataset("longitude", data=longitude)
+
 
 # latitude
-dset = f.create_dataset("latitude", data=arr)
+latitude = data[variable5a]
+#dset = f.create_dataset("latitude", data=latitude)
 
 # dataset
-g = np.array(file4)
-dset = f.create_dataset("dataset", data=file4)
+for idx,elem in enumerate(dt.names):
+    # if answer of last question is in the header, then query the data
+    if elem==variable5b:
+        break
+else:
+    print column1+" not found in header of the csv file - check the last question"
+    exit
+dataset = np.array([e[idx] for e in file4]) # BITTE WERTE KONTROLLIEREN
 
-g = np.asmatrix(file4)
+#dset = f.create_dataset("dataset", data=dataset )
 
-#[(29796, 28793, 10341, 10331), (29479, 28277, 30050, 28274),25701
-
-
-longitude = 0
-
- # Create a new file using the default properties.
-fid = h5py.h5f.create(FILE)
-
-# Create the dataspace.  No maximum size parameter needed.
-dims = (DIM0, DIM1)
-space_id = h5py.h5s.create_simple(dims)
-
-# Create the dataset creation property list.  Set the layout to compact.
-dcpl = h5py.h5p.create(h5py.h5p.DATASET_CREATE)
-dcpl.set_layout(h5py.h5d.COMPACT)
-
-# Create the datasets using the dataset creation property list.
-dset = h5py.h5d.create(fid, DATASET, h5py.h5t.STD_I32BE, space_id, dcpl)
 
 # Write the data to the dataset.
 dset.write(h5py.h5s.ALL, h5py.h5s.ALL, wdata)
-
-
-

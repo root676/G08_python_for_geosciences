@@ -27,6 +27,8 @@ from mpl_toolkits.basemap import Basemap
 import matplotlib
 import h5py
 
+import pandas as pd
+
 download_page = "http://rs.geo.tuwien.ac.at/downloads/cpa/"
 
 
@@ -98,7 +100,7 @@ lat_0 = lats.mean()
 
 m = Basemap(projection='mill', lat_0=0, lon_0=0,
               resolution='l', area_thresh=1000.0)
-            
+
 #%%
 
 lon, lat = np.meshgrid(lons, lats)
@@ -112,9 +114,9 @@ m.drawcountries()
 
 z = np.ma.array(force, mask= force==0)
 cmap = matplotlib.colors.ListedColormap(['red'])
-            
+
 cs = m.pcolor(xi,yi,z, cmap = cmap)
-#plt.show()
+plt.show()
 
 
 
@@ -178,14 +180,12 @@ with open(os.path.basename(url), "wb") as local_file:
           local_file.write(f.read())
 
 file = open("101010.bin", 'rb')
-print file.read(107)
+template = file.read(107)
+print template
 
+exec "dt = np."+template
+#dt = np.dtype([('sunburnedpenguin', '<i2'), ('newspaper', '<i2'), ('redzebra', '<i2'), ('embarresedskunk', '<i2')])
 
-# DANIEL: WORKING HERE
-#clue4
-
-
-dt = np.dtype([('sunburnedpenguin', '<i2'), ('newspaper', '<i2'), ('redzebra', '<i2'), ('embarresedskunk', '<i2')])
 file4 = np.fromfile("101010.bin", dtype=dt)
 print file4
 
@@ -193,15 +193,40 @@ print file4
 #SAMPLE CODE FROM WEB FOR WRITING HDF5 files
 #clue5
 
+# Alive without breath, as cold as death; never thirsty, ever drinking, all in mail, never
+# clinking.
 column5 = "fish"
+
+# What gets wetter and wetter the more it dries?
 variable5a = "towel"
+
+# What is black and white and red all over?
 variable5b ="sunburnedpenguin"
 
+"""
 # write netcdffile
 file = NetCDFFile('rectilinear.nc', 'w')
 write_rectilinear(file, nodal, 'data', x_coord, y_coord)
 file.close()
+"""
 
+
+# ---------------------------   in progress ----------------
+f = h5py.File('myfile.hdf5','w')
+
+# longitude
+dset = f.create_dataset("longitude", data=arr)
+
+# latitude
+dset = f.create_dataset("latitude", data=arr)
+
+# dataset
+g = np.array(file4)
+dset = f.create_dataset("dataset", data=file4)
+
+g = np.asmatrix(file4)
+
+#[(29796, 28793, 10341, 10331), (29479, 28277, 30050, 28274),25701
 
 
 longitude = 0
@@ -222,5 +247,6 @@ dset = h5py.h5d.create(fid, DATASET, h5py.h5t.STD_I32BE, space_id, dcpl)
 
 # Write the data to the dataset.
 dset.write(h5py.h5s.ALL, h5py.h5s.ALL, wdata)
+
 
 

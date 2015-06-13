@@ -203,8 +203,6 @@ variable5a = "towel"
 variable5b ="sunburnedpenguin"
 
 
-# ----------------- hey ab hier bitte testen (mein pyscripter macht grad probleme); lg Daniel ------------------------------
-
 # create hdf5 file
 f = h5py.File('myfile.hdf5','w')
 
@@ -218,12 +216,14 @@ else:
     exit
 
 longitude = clue1_array[:][idx]
-#dset = f.create_dataset("longitude", data=longitude)
+#write the longitude to the hdf5 file
+f.create_dataset("longitude", data=longitude)
 
 
 # latitude
 latitude = data[variable5a]
-#dset = f.create_dataset("latitude", data=latitude)
+#write the latitude to the hdf5 file
+f.create_dataset("latitude", data=latitude)
 
 # dataset
 for idx,elem in enumerate(dt.names):
@@ -235,8 +235,8 @@ else:
     exit
 dataset = np.array([e[idx] for e in file4]) # BITTE WERTE KONTROLLIEREN
 
-#dset = f.create_dataset("dataset", data=dataset )
 
+#write the dataset to the hdf5 file
+f.create_dataset("dataset", data=dataset )
 
-# Write the data to the dataset.
-dset.write(h5py.h5s.ALL, h5py.h5s.ALL, wdata)
+f.close()

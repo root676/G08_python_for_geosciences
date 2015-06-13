@@ -10,7 +10,6 @@
 #-------------------------------------------------------------------------------
 #!/usr/bin/env python
 
-
 import csv
 import urllib2
 import os
@@ -27,20 +26,26 @@ from mpl_toolkits.basemap import Basemap
 import matplotlib
 import h5py
 
-
+#Baselink for the file-download
 download_page = "http://rs.geo.tuwien.ac.at/downloads/cpa/"
 
-
-# It has 4 legs but cannot walk.
+"""
+Riddle 1:
+It has 4 legs but cannot walk.
+"""
 filename1 = "table"
+
+#download of the dataset table.csv
 response = urllib2.urlopen(download_page+filename1+".csv")
 
-
-# Young I?m tall, old I?m short, I love to glow, breath is my foe.
+"""
+Riddle 2:
+Young I?m tall, old I?m short, I love to glow, breath is my foe.
+"""
 column1 = "candle"
 
 
-# read header from file
+# read header from table.csv
 header1 = response.readline()[:-1].split(',')
 
 
@@ -54,22 +59,30 @@ else:
     exit
 
 
-# load data from file
+# load data from table.csv
 clue1_array = np.loadtxt(response,skiprows=0, delimiter=',')
 del response
 
-# What digit is the most frequent between the numbers 1 and 1000?
+"""
+Riddle 3:
+What digit is the most frequent between the numbers 1 and 1000?
+"""
+#Create a list with numbers from 1 to 1000
 thousandlist = range(1,1001)
 digitlist =[]
 for element in thousandlist:
+    #split the numbers into string elements
     for digit in str(element):
         digitlist.append(int(digit))
 
+#save digits to numpy array
 onetothousand_vector = np.array(digitlist)
 
+#plot the histogram using matplotlib
 plt.hist(onetothousand_vector, bins=10)
 plt.show()
 
+#extract the most common digit from the array using most_common()
 data = Counter(onetothousand_vector)
 row1 = data.most_common(1)[0][0]
 
@@ -78,16 +91,22 @@ filename2part1 = clue1_array[row1-1][idx]
 if filename2part1==int(filename2part1):
     filename2part1 = int(filename2part1)
 
-# Stay hungry, stay ......, Steve Jobs
+"""
+Riddle 4:
+Stay hungry, stay ......, Steve Jobs
+"""
 filename2part2 = "foolish"
 
-# download file
+#create url for 9_foolish.nc
 url = str(download_page+str(filename2part1)+'_'+str(filename2part2)+'.nc')
 print "Downloading: " + url
 
+#download 9_foolish.nc
 f = urllib2.urlopen (url)
 with open(os.path.basename(url), "wb") as local_file:
           local_file.write(f.read())
+          
+#read 9_foolish.nc using netCDF4
 nc = netCDF4.Dataset('9_foolish.nc')
 
 lats = nc.variables['lat'][:]

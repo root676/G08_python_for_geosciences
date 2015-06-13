@@ -109,6 +109,7 @@ with open(os.path.basename(url), "wb") as local_file:
 #read 9_foolish.nc using netCDF4
 nc = netCDF4.Dataset('9_foolish.nc')
 
+#read lons, lats, etc. from 9_foolish.nc to display a capital city on basemap.
 lats = nc.variables['lat'][:]
 lons = nc.variables['lon'][:]
 force = nc.variables['force'][:]
@@ -140,34 +141,38 @@ plt.show()
 
 capitalcity = "canberra"
 
-# What planet has the shortest year?
+"""
+Riddle 5:
+What planet has the shortest year?
+"""
 filename3_part2 = "mercury"
 filename3 =capitalcity +'_'+filename3_part2+'.npz'
 
-#response = requests.get('C:\Users\Dan\Downloads\canberra_mercury.npz', stream=True)
-#response = urllib2.urlopen(filename3,'wb')
-
-
+#build URL for file-download
 url = download_page+filename3
 print "Downloading: " + url
 
+#download canberra_mercury.npz
 f = urllib2.urlopen(url)
 with open(os.path.basename(url), "wb") as local_file:
           local_file.write(f.read())
 
-# load data
+# load data from canberra_mercury.npz
 data = np.load('canberra_mercury.npz')
 
-# gives back all available meta data
-#data.files
-
-# I?ll be . . . ., Arnold Schwarzenegger
+"""
+Riddle 6:
+I?ll be . . . ., Arnold Schwarzenegger
+"""
 variable3 = "back"
 
-# giving back the data of 'back'
+# giving back the data of 'back' in file canberra_mercury.npz
 variable3 = data[variable3]
 
-# An . . . .. a day keeps the doctor away!
+"""
+Riddle 7:
+An . . . .. a day keeps the doctor away!
+"""
 column3 = "apple"
 
 # load header from file
@@ -189,43 +194,45 @@ filename4 = variable3[row3]
 if filename4==int(filename4):
     filename4 = int(filename4)
 
-# download the binary file
+# build url for 101010.bin-download
 url = download_page+str(filename4)+".bin"
 print "Downloading: " + url
 
+#download 101010.bin 
 f = urllib2.urlopen (url)
 with open(os.path.basename(url), "wb") as local_file:
           local_file.write(f.read())
 
 file = open("101010.bin", 'rb')
 template = file.read(107)
-print template
 
 exec "dt = np."+template
-#dt = np.dtype([('sunburnedpenguin', '<i2'), ('newspaper', '<i2'), ('redzebra', '<i2'), ('embarresedskunk', '<i2')])
 
 file4 = np.fromfile("101010.bin", dtype=dt)
-print file4
 
-
-#SAMPLE CODE FROM WEB FOR WRITING HDF5 files
-#clue5
-
-# Alive without breath, as cold as death; never thirsty, ever drinking, all in mail, never
-# clinking.
+"""
+Riddle 8:
+Alive without breath, as cold as death; never thirsty, ever drinking, all in mail, never clinking.
+"""
 column5 = "fish"
 
-# What gets wetter and wetter the more it dries?
+"""
+Riddle 9:
+What gets wetter and wetter the more it dries?
+"""
 variable5a = "towel"
 
-# What is black and white and red all over?
+"""
+Riddle 10:
+What is black and white and red all over?
+"""
 variable5b ="sunburnedpenguin"
 
 
 # create hdf5 file
 f = h5py.File('myfile.hdf5','w')
 
-# longitude for the hdf5 file
+# write longitude to the hdf5 file
 for idx,elem in enumerate(header1):
     # if answer of last question is in the header, then query the data
     if elem==column5:
@@ -234,17 +241,18 @@ else:
     print column1+" not found in header of the csv file - check the last question"
     exit
 
+#extract the longitude values from table.csv
 longitude = clue1_array[:][idx]
 #write the longitude to the hdf5 file
 f.create_dataset("longitude", data=longitude)
 
 
-# latitude
+#extract the latitude values from canberra_mercury.npz
 latitude = data[variable5a]
 #write the latitude to the hdf5 file
 f.create_dataset("latitude", data=latitude)
 
-# dataset
+# extract the dataset from 101010.bin 
 for idx,elem in enumerate(dt.names):
     # if answer of last question is in the header, then query the data
     if elem==variable5b:

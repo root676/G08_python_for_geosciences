@@ -258,4 +258,37 @@ dataset = np.array([e[idx] for e in file4]) # BITTE WERTE KONTROLLIEREN
 #write the dataset to the hdf5 file
 f.create_dataset("dataset", data=dataset )
 
+#read variables for basemap display
+lats = f['latitude'][:]
+lons = f['longitude'][:]
+force = f['dataset'][:]
+
+
 f.close()
+
+#MAPTEST Clemens
+
+
+lon_0 = lons.mean()
+lat_0 = lats.mean()
+
+m = Basemap(projection='mill', lat_0=0, lon_0=0,
+              resolution='l', area_thresh=1000.0)
+
+#%%
+
+lon, lat = np.meshgrid(lons, lats)
+xi, yi = m(lon, lat)
+
+m.drawparallels(np.arange(-80., 81., 10.), labels=[1,0,0,0], fontsize=10)
+m.drawmeridians(np.arange(-180., 181., 10.), labels=[0,0,0,1], fontsize=10)
+m.drawcoastlines()
+m.drawstates()
+m.drawcountries()
+
+z = np.ma.array(force, mask= force==0)
+cmap = matplotlib.colors.ListedColormap(['red'])
+
+cs = m.pcolor(xi,yi,z, cmap = cmap)
+plt.show()
+

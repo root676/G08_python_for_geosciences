@@ -81,6 +81,17 @@ Riddle 11:
 Answer: "sunburnedpenguin"
 Variable-name: variable5b
 
+Filenames that arose from the solutions of the riddles or were retrieved by reading data:
+
+filename2_part1 = 9
+
+filename2_part1 + filename2_part2 = "9_foolish.nc"
+
+filename3_part1 = "canberra"
+
+filename3_part1 + filename3_part2 = "canberra_mercury.npz"
+
+filename4 = "101010.bin"
 
 
 

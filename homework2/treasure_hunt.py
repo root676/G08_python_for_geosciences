@@ -1,4 +1,4 @@
-#-------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 # Name:        treasure_hunt.py
 # Purpose:     this routine helps to find the treasure
 #
@@ -14,9 +14,6 @@ import csv
 import urllib2
 import os
 import netCDF4
-from netCDF4 import Dataset
-
-import scipy.io
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import Counter
@@ -36,16 +33,16 @@ It has 4 legs but cannot walk.
 filename1 = "table"
 
 #download of the dataset table.csv
-url = download_page+filename1+".csv"
+url = download_page + filename1 + ".csv"
 
-print 'Opening: ' + url
+print
+'Downloading: ' + url
 
-f = urllib2.urlopen (url)
+f = urllib2.urlopen(url)
 with open(os.path.basename(url), "wb") as local_file:
-          local_file.write(f.read())
+    local_file.write(f.read())
 
-
-response = urllib2.urlopen (url)
+response = urllib2.urlopen(url)
 
 """
 Riddle 2:
@@ -64,12 +61,13 @@ for idx, elem in enumerate(header1):
     if elem == column1:
         break
 else:
-    print column1+" not found in header of the file - check the last question"
+    print
+    column1 + " not found in header of the file - check the last question"
     exit
 
 
 # load data from table.csv
-clue1_array = np.loadtxt(response,skiprows=0, delimiter=',')
+clue1_array = np.loadtxt(response, skiprows=0, delimiter=',')
 del response
 
 """
@@ -77,8 +75,8 @@ Riddle 3:
 What digit is the most frequent between the numbers 1 and 1000?
 """
 #Create a list with numbers from 1 to 1000
-thousandlist = range(1,1001)
-digitlist =[]
+thousandlist = range(1, 1001)
+digitlist = []
 for element in thousandlist:
     #split the numbers into string elements
     for digit in str(element):
@@ -96,8 +94,8 @@ data = Counter(onetothousand_vector)
 row1 = data.most_common(1)[0][0]
 
 # read from file (row1-1 because without header)
-filename2part1 = clue1_array[row1-1][idx]
-if filename2part1==int(filename2part1):
+filename2part1 = clue1_array[row1 - 1][idx]
+if filename2part1 == int(filename2part1):
     filename2part1 = int(filename2part1)
 
 """
@@ -107,14 +105,14 @@ Stay hungry, stay ......, Steve Jobs
 filename2part2 = "foolish"
 
 #create url for 9_foolish.nc
-url = str(download_page+str(filename2part1)+'_'+str(filename2part2)+'.nc')
-# print "Downloading: " + url
+url = str(download_page + str(filename2part1) + '_' + str(filename2part2) + '.nc')
+print "Downloading: " + url
 
 #download 9_foolish.nc
-# f = urllib2.urlopen (url)
-# with open(os.path.basename(url), "wb") as local_file:
-#           local_file.write(f.read())
-          
+f = urllib2.urlopen (url)
+with open(os.path.basename(url), "wb") as local_file:
+          local_file.write(f.read())
+
 #read 9_foolish.nc using netCDF4
 nc = netCDF4.Dataset('9_foolish.nc')
 
@@ -123,46 +121,21 @@ lats = nc.variables['lat'][:]
 lons = nc.variables['lon'][:]
 force = nc.variables['force'][:]
 
-lon_0 = lons.mean()
-lat_0 = lats.mean()
-
 m = Basemap(projection='mill', lat_0=0, lon_0=0,
-              resolution='l', area_thresh=1000.0)
-
-#%%
+            resolution='l', area_thresh=1000.0)
 
 lon, lat = np.meshgrid(lons, lats)
-
-print('meshgrid nc')
-print(lon.shape)
-print(lat.shape)
-print(force.shape)
-print(lat)
-print(lon)
-print(force)
-
-
 xi, yi = m(lon, lat)
 
-
-print('NC map meshgrid')
-print lat
-print lat.shape
-print lon
-print lon.shape
-
-
-
-m.drawparallels(np.arange(-80., 81., 10.), labels=[1,0,0,0], fontsize=10)
-m.drawmeridians(np.arange(-180., 181., 10.), labels=[0,0,0,1], fontsize=10)
+m.drawparallels(np.arange(-80., 81., 10.), labels=[1, 0, 0, 0], fontsize=10)
+m.drawmeridians(np.arange(-180., 181., 10.), labels=[0, 0, 0, 1], fontsize=10)
 m.drawcoastlines()
 m.drawstates()
 m.drawcountries()
 
-z = np.ma.array(force, mask= force==0)
+z = np.ma.array(force, mask=force == 0)
 cmap = matplotlib.colors.ListedColormap(['red'])
-
-cs = m.pcolor(xi,yi,z, cmap = cmap)
+cs = m.pcolor(xi, yi, z, cmap=cmap)
 # plt.show()
 
 #%%
@@ -174,16 +147,16 @@ Riddle 5:
 What planet has the shortest year?
 """
 filename3_part2 = "mercury"
-filename3 =capitalcity +'_'+filename3_part2+'.npz'
+filename3 = capitalcity + '_' + filename3_part2 + '.npz'
 
 #build URL for file-download
-url = download_page+filename3
-# print "Downloading: " + url
+url = download_page + filename3
+print "Downloading: " + url
 
 #download canberra_mercury.npz
-# f = urllib2.urlopen(url)
-# with open(os.path.basename(url), "wb") as local_file:
-#           local_file.write(f.read())
+f = urllib2.urlopen(url)
+with open(os.path.basename(url), "wb") as local_file:
+          local_file.write(f.read())
 
 # load data from canberra_mercury.npz
 canberra_mercury = np.load('canberra_mercury.npz')
@@ -204,37 +177,38 @@ An . . . .. a day keeps the doctor away!
 column3 = "apple"
 
 # load header from file
-for idx,elem in enumerate(header1):
+for idx, elem in enumerate(header1):
     # if answer of last question is in the header, then query the data
-    if elem==column3:
+    if elem == column3:
         break
 else:
-    print column1+" not found in header of the file - check the last question"
+    print
+    column1 + " not found in header of the file - check the last question"
     exit
 
 # calculate mean value of the third column of the first downloaded file
-row3 = clue1_array[:,idx].mean()
+row3 = clue1_array[:, idx].mean()
 
 # load value from variabl3 with the specific row information
 filename4 = variable3[row3]
 
 # if value can taken as integer, then it will be changed to integer
-if filename4==int(filename4):
+if filename4 == int(filename4):
     filename4 = int(filename4)
 
 # build url for 101010.bin-download
-url = download_page+str(filename4)+".bin"
-# print "Downloading: " + url
+url = download_page + str(filename4) + ".bin"
+print "Downloading: " + url
 
 #download 101010.bin 
-# f = urllib2.urlopen (url)
-# with open(os.path.basename(url), "wb") as local_file:
-#           local_file.write(f.read())
+f = urllib2.urlopen (url)
+with open(os.path.basename(url), "wb") as local_file:
+          local_file.write(f.read())
 
 file = open("101010.bin", 'rb')
 template = file.read(107)
 
-exec "dt = np."+template
+exec "dt = np." + template
 
 
 # Skip the first 107 bites when reading the data from the file
@@ -258,7 +232,7 @@ variable5a = "towel"
 Riddle 10:
 What is black and white and red all over?
 """
-variable5b ="sunburnedpenguin"
+variable5b = "sunburnedpenguin"
 
 
 
@@ -279,24 +253,22 @@ longitude = longitude.reshape((180, 360))
 latitude = canberra_mercury[variable5a]
 latitude = latitude.reshape((180, 360))
 
-print ('latlong')
-
 # extract the dataset from 101010.bin
-for idx,elem in enumerate(dt.names):
+for idx, elem in enumerate(dt.names):
     # if answer of last question is in the header, then query the data
-    if elem==variable5b:
+    if elem == variable5b:
         break
     else:
-        print column1 + " not found in header of the csv file - check the last question"
+        print
+        column1 + " not found in header of the csv file - check the last question"
         exit
 
 dataset = np.array([e[idx] for e in file4])
 dataset = np.reshape(dataset, (180, 360))
 
-
 f.close()
 # create hdf5 file
-f = h5py.File('treasure_map.hdf5','w')
+f = h5py.File('treasure_map.hdf5', 'w')
 
 # write data to the hdf5 file
 f.create_dataset("longitude", data=longitude)
@@ -313,21 +285,18 @@ f.close()
 #MAPTEST Clemens
 
 m = Basemap(projection='mill', lat_0=0, lon_0=0,
-              resolution='l', area_thresh=1000.0)
+            resolution='l', area_thresh=1000.0)
 
 xi, yi = m(lons, lats)
 
-print(lon)
-print(lat)
-print(dat)
-
-m.drawparallels(np.arange(-80., 81., 10.), labels=[1,0,0,0], fontsize=10)
-m.drawmeridians(np.arange(-180., 181., 10.), labels=[0,0,0,1], fontsize=10)
+m.drawparallels(np.arange(-80., 81., 10.), labels=[1, 0, 0, 0], fontsize=10)
+m.drawmeridians(np.arange(-180., 181., 10.), labels=[0, 0, 0, 1], fontsize=10)
 m.drawcoastlines()
 m.drawstates()
 m.drawcountries()
 
+cmap = matplotlib.colors.ListedColormap(['white','red'])
+cs = m.pcolor(xi, yi, dat, cmap=cmap)
 
-cs = m.pcolor(xi,yi,dat)
 plt.show()
 

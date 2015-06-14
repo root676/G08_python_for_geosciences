@@ -35,8 +35,7 @@ filename1 = "table"
 #download of the dataset table.csv
 url = download_page + filename1 + ".csv"
 
-print
-'Downloading: ' + url
+print 'Downloading: ' + url
 
 f = urllib2.urlopen(url)
 with open(os.path.basename(url), "wb") as local_file:

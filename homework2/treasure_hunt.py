@@ -80,7 +80,7 @@ onetothousand_vector = np.array(digitlist)
 
 #plot the histogram using matplotlib
 plt.hist(onetothousand_vector, bins=10)
-plt.show()
+# plt.show()
 
 #extract the most common digit from the array using most_common()
 data = Counter(onetothousand_vector)
@@ -134,10 +134,17 @@ m.drawcountries()
 z = np.ma.array(force, mask= force==0)
 cmap = matplotlib.colors.ListedColormap(['red'])
 
+# print '--- X ---'
+# print xi
+# print'--- Y ---'
+# print yi
+# print '--- DAT ---'
+# print force
+
 cs = m.pcolor(xi,yi,z, cmap = cmap)
-plt.show()
+# plt.show()
 
-
+#%%
 
 capitalcity = "canberra"
 
@@ -208,7 +215,11 @@ template = file.read(107)
 
 exec "dt = np."+template
 
-file4 = np.fromfile("101010.bin", dtype=dt)
+
+# Skip the first 107 bites when reading the data from the file
+file.seek(107)
+file4 = np.fromfile(file, dtype=dt)
+f.close()
 
 """
 Riddle 8:
@@ -247,21 +258,26 @@ longitude = clue1_array[:][idx]
 f.create_dataset("longitude", data=longitude)
 
 
+
 #extract the latitude values from canberra_mercury.npz
 latitude = data[variable5a]
 #write the latitude to the hdf5 file
 f.create_dataset("latitude", data=latitude)
 
-# extract the dataset from 101010.bin 
+# extract the dataset from 101010.bin
 for idx,elem in enumerate(dt.names):
     # if answer of last question is in the header, then query the data
     if elem==variable5b:
         break
-else:
-    print column1+" not found in header of the csv file - check the last question"
-    exit
+    else:
+        print column1 + " not found in header of the csv file - check the last question"
+        exit
+        
 dataset = np.array([e[idx] for e in file4]) # BITTE WERTE KONTROLLIEREN
 
+print ' -- dataset ---'
+print dataset.shape
+print dataset
 
 #write the dataset to the hdf5 file
 f.create_dataset("dataset", data=dataset )
@@ -269,16 +285,12 @@ f.create_dataset("dataset", data=dataset )
 #read variables for basemap display
 lats = f['latitude'][:]
 lons = f['longitude'][:]
-force = f['dataset'][:]
+dat = f['dataset'][:]
 
 
 f.close()
 
 #MAPTEST Clemens
-
-
-lon_0 = lons.mean()
-lat_0 = lats.mean()
 
 m = Basemap(projection='mill', lat_0=0, lon_0=0,
               resolution='l', area_thresh=1000.0)
@@ -294,9 +306,26 @@ m.drawcoastlines()
 m.drawstates()
 m.drawcountries()
 
-z = np.ma.array(force, mask= force==0)
-cmap = matplotlib.colors.ListedColormap(['red'])
+print '--- X ---'
+print xi
+print ' shape '
+print xi.shape
+print'--- Y ---'
+print yi
+print ' shape '
+print yi.shape
+print '--- DAT ---'
+print dat.astype(float)
+print ' shape '
+print dat.shape
 
-cs = m.pcolor(xi,yi,z, cmap = cmap)
+
+
+
+
+
+
+
+cs = m.pcolor(xi,yi,dat.astype(float))
 plt.show()
 

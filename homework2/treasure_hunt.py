@@ -280,8 +280,7 @@ dat = f['dataset'][:]
 
 f.close()
 
-#MAPTEST Clemens
-
+# creating the basemap
 m = Basemap(projection='mill', lat_0=0, lon_0=0,
             resolution='l', area_thresh=1000.0,
             llcrnrlon=-30.0, urcrnrlon=80.0, llcrnrlat=20.0, urcrnrlat=70.0,
@@ -289,14 +288,17 @@ m = Basemap(projection='mill', lat_0=0, lon_0=0,
 
 xi, yi = m(lons, lats)
 
+# add meridians and parallel lines
 m.drawparallels(np.arange(-80., 81., 10.), labels=[1, 0, 0, 0], fontsize=10)
 m.drawmeridians(np.arange(-180., 181., 10.), labels=[0, 0, 0, 1], fontsize=10)
 m.drawcoastlines()
 m.drawstates()
 m.drawcountries()
 
+# add colors and plot the data
 cmap = matplotlib.colors.ListedColormap(['white','red'])
 cs = m.pcolor(xi, yi, dat, cmap=cmap)
-
 plt.show()
 
+# the island where the treasure can be found:
+result = "Malta"

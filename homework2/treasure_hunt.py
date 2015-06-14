@@ -86,7 +86,7 @@ onetothousand_vector = np.array(digitlist)
 
 #plot the histogram using matplotlib
 plt.hist(onetothousand_vector, bins=10)
-# plt.show()
+plt.show()
 
 #extract the most common digit from the array using most_common()
 data = Counter(onetothousand_vector)
@@ -135,9 +135,8 @@ m.drawcountries()
 z = np.ma.array(force, mask=force == 0)
 cmap = matplotlib.colors.ListedColormap(['red'])
 cs = m.pcolor(xi, yi, z, cmap=cmap)
-# plt.show()
+plt.show()
 
-#%%
 
 capitalcity = "canberra"
 

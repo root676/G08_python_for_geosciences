@@ -284,7 +284,9 @@ f.close()
 #MAPTEST Clemens
 
 m = Basemap(projection='mill', lat_0=0, lon_0=0,
-            resolution='l', area_thresh=1000.0)
+            resolution='l', area_thresh=1000.0,
+            llcrnrlon=-30.0, urcrnrlon=80.0, llcrnrlat=20.0, urcrnrlat=70.0,
+            )
 
 xi, yi = m(lons, lats)
 

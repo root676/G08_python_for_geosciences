@@ -78,7 +78,7 @@ Variable-name: variable5a
 Riddle 11:
 **********
 "What is black and white and red all over?"
-Answer: "sunburnedpenguin"
+Answer: "newspaper"
 Variable-name: variable5b
 
 Filenames that arose from the solutions of the riddles or were retrieved by reading data:

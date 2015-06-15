@@ -198,7 +198,7 @@ if filename4 == int(filename4):
 url = download_page + str(filename4) + ".bin"
 print "Downloading: " + url
 
-#download 101010.bin 
+#download 101010.bin
 f = urllib2.urlopen (url)
 with open(os.path.basename(url), "wb") as local_file:
           local_file.write(f.read())
@@ -230,7 +230,7 @@ variable5a = "towel"
 Riddle 10:
 What is black and white and red all over?
 """
-variable5b = "sunburnedpenguin"
+variable5b = "newspaper"
 
 
 
@@ -282,9 +282,7 @@ f.close()
 
 # creating the basemap
 m = Basemap(projection='mill', lat_0=0, lon_0=0,
-            resolution='l', area_thresh=1000.0,
-            llcrnrlon=-30.0, urcrnrlon=80.0, llcrnrlat=20.0, urcrnrlat=70.0,
-            )
+            resolution='l', area_thresh=1000.0)
 
 xi, yi = m(lons, lats)
 
@@ -301,4 +299,4 @@ cs = m.pcolor(xi, yi, dat, cmap=cmap)
 plt.show()
 
 # the island where the treasure can be found:
-result = "Malta"
+result = "Madagascar"
